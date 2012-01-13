@@ -1,5 +1,6 @@
 require 'omniauth-oauth2'
 require 'multi_json'
+require 'multi_xml'
 
 module OmniAuth
   module Strategies
@@ -40,13 +41,12 @@ module OmniAuth
             :email => raw_info['feed']['entry']['content']['Email']['EmailAddress']
         }
       end
-
       extra do
         { 'raw_info' => raw_info }
       end
 
       def raw_info
-        @raw_info ||= access_token.get("https://api.constantcontact.com/ws/customers/" + request.params['username'] + "/settings/emailaddresses").parsed
+        @raw_info ||= MultiXml.parse(access_token.get("https://api.constantcontact.com/ws/customers/" + request.params['username'] + "/settings/emailaddresses").body)
       end
     end
   end

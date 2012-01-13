@@ -4,6 +4,8 @@ This gem is an OmniAuth 2.0 Strategy for the [ConstantContact API](http://http:/
 
 It supports the OmniAuth REST API which uses OAuth 2.0
 
+Many thanks to [Caleb Clark](https://github.com/calebclark/omniauth-constantcontact) for writing the original OmniAuth strategy. This builds on his work.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -35,6 +37,14 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :constantcontact, ENV['CC_KEY'], ENV['CC_SECRET']
 end
 ```
+
+** Ensure that you have provided the correct Redirect URI in Constant Contact when you generated the Key.
+You are likely to see an error stating "invalid redirect" if the Request URI does not match the one from your environment.
+
+In development for example the Redirect URI is
+
+    http://localhost:3000/auth/constantcontact/callback
+
 
 You will have to put in your consumer key and secret, which you can find at http://community.constantcontact.com/t5/Documentation/API-Keys/ba-p/25015
 
