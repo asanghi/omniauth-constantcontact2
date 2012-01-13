@@ -11,9 +11,9 @@ module OmniAuth
       option :name, "constantcontact"
 
       option :client_options, {
-          :site => 'https://oauth2.constantcontact.com/oauth2/oauth',
-          :authorize_url => '/siteowner/authorize',
-          :token_url => '/token'
+          :site => 'https://oauth2.constantcontact.com',
+          :authorize_url => '/oauth2/oauth/siteowner/authorize',
+          :token_url => '/oauth2/oauth/token'
       }
 
       def authorize_params
