@@ -37,10 +37,18 @@ module OmniAuth
       end
 
       info do
-        {
-            :email => raw_info['feed']['entry']['content']['Email']['EmailAddress']
-        }
+        entries = raw_info['feed']['entry']
+        if entries.kind_of?(Array)
+          {
+              :email_entries => entries.map{|x|x["content"]["Email"]["EmailAddress"]}
+          }
+        else 
+          {
+              :email => entries["content"]["Email"]["EmailAddress"]
+          }
+        end
       end
+
       extra do
         { 'raw_info' => raw_info }
       end
