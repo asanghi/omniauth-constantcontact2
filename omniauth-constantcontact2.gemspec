@@ -20,7 +20,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'multi_json', '~> 1.0.3'
   gem.add_dependency 'multi_xml'
 
-  gem.add_development_dependency('rake', ['~> 0.9.2'])
+  gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rspec', '~> 2.8'
   gem.add_development_dependency 'rack-test'
   gem.add_development_dependency 'simplecov'
