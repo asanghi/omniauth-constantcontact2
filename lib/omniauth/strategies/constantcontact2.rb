@@ -18,10 +18,9 @@ module OmniAuth
       }
 
       def authorize_params
-        super.tap do |params|
-          params[:response_type] ||= DEFAULT_RESPONSE_TYPE
-          params[:client_id] = client.id
-        end
+        options.authorize_params[:response_type] ||= DEFAULT_RESPONSE_TYPE
+        options.authorize_params[:client_id] = client.id
+        options.authorize_params.merge(options.authorize_options.inject({}){|h,k| h[k.to_sym] = options[k] if options[k]; h})
       end
 
       def token_params
