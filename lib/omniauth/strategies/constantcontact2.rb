@@ -8,6 +8,7 @@ module OmniAuth
       
       DEFAULT_RESPONSE_TYPE = 'code'
       DEFAULT_GRANT = 'authorization_code'
+      API_PATH = 'https://api.constantcontact.com/v2'
       
       option :name, "constantcontact"
 
@@ -37,16 +38,9 @@ module OmniAuth
       end
 
       info do
-        entries = raw_info['feed']['entry']
-        if entries.kind_of?(Array)
-          {
-              :email_entries => entries.map{|x|x["content"]["Email"]["EmailAddress"]}
-          }
-        else 
-          {
-              :email => entries["content"]["Email"]["EmailAddress"]
-          }
-        end
+        {
+          email: raw_info['email']
+        }
       end
 
       extra do
@@ -54,7 +48,11 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= MultiXml.parse(access_token.get("https://api.constantcontact.com/ws/customers/" + request.params['username'] + "/settings/emailaddresses").body)
+        options = {
+          params: {api_key: client.id},
+          headers: {'Authorization' => "Bearer #{access_token.token}"}
+        }
+        @raw_info ||= JSON.parse(access_token.get("#{API_PATH}/account/info", options).body)
       end
     end
   end
