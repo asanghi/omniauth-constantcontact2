@@ -54,7 +54,7 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= MultiXml.parse(access_token.get("https://api.constantcontact.com/ws/customers/" + request.params['username'] + "/settings/emailaddresses").body)
+        @raw_info ||= MultiXml.parse(access_token.get("https://api.constantcontact.com/ws/customers/#{request.params['username'].strip}/settings/emailaddresses").body)
       end
     end
   end
