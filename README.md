@@ -1,5 +1,7 @@
 # Omniauth::ConstantContact2
 
+[![Build Status](https://travis-ci.org/asanghi/omniauth-constantcontact2.svg?branch=master)](https://travis-ci.org/asanghi/omniauth-constantcontact2)
+
 This gem is an OmniAuth 2.0 Strategy for the [ConstantContact API](http://http://community.constantcontact.com/t5/Documentation/Authentication-using-OAuth-2-0-new-October-2011/ba-p/38313)
 
 It supports the OmniAuth REST API which uses OAuth 2.0
