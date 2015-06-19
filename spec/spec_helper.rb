@@ -4,8 +4,11 @@ require 'simplecov'
 SimpleCov.start
 require 'rspec'
 require 'rack/test'
+require 'byebug'
 require 'omniauth'
 require 'omniauth-constantcontact2'
+
+OmniAuth.config.test_mode = true
 
 Dir[File.expand_path('../support/**/*', __FILE__)].each { |f| require f }
 
