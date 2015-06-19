@@ -4,7 +4,6 @@ require 'simplecov'
 SimpleCov.start
 require 'rspec'
 require 'rack/test'
-require 'byebug'
 require 'omniauth'
 require 'omniauth-constantcontact2'
 
