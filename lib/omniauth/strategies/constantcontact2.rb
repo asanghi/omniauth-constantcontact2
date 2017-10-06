@@ -5,11 +5,11 @@ require 'multi_xml'
 module OmniAuth
   module Strategies
     class ConstantContact2 < OmniAuth::Strategies::OAuth2
-      
+
       DEFAULT_RESPONSE_TYPE = 'code'
       DEFAULT_GRANT = 'authorization_code'
       API_PATH = 'https://api.constantcontact.com/v2'
-      
+
       option :name, "constantcontact"
 
       option :client_options, {
@@ -53,6 +53,10 @@ module OmniAuth
           headers: {'Authorization' => "Bearer #{access_token.token}"}
         }
         @raw_info ||= JSON.parse(access_token.get("#{API_PATH}/account/info", options).body)
+      end
+
+      def callback_url
+        full_host + script_name + callback_path
       end
     end
   end
